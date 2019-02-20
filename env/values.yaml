@@ -1,3 +1,20 @@
+PipelineSecrets: {}
+controllerbuild:
+  enabled: true
+expose:
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+  config:
+    domain: 34.76.150.114.nip.io
+    exposer: Ingress
+    http: "true"
+jenkins:
+  Servers:
+    Global:
+      EnvVars:
+        TILLER_NAMESPACE: kube-system
+  enabled: false
 jenkins-x-platform:
   PipelineSecrets:
     DockerConfig: |-
@@ -12,3 +29,4 @@ jenkins-x-platform:
       }
   postinstalljob:
     enabled: "true"
+prow: {}
